@@ -1,0 +1,69 @@
+### Listar todos los libros
+GET http://localhost:5000/libros
+Accept: application/json
+
+### Obtener un libro específico
+GET http://localhost:5000/libros/buscar/2
+Accept: application/json
+
+### Crear un nuevo libro (válido)
+POST http://localhost:5000/libros
+Content-Type: application/json
+Accept: application/json
+
+{
+  "titulo": "La masica del silencio",
+  "autor": "Garcia árquez",
+  "isbn": "7803474562834",
+  "categoria": "novela",
+  "estado": "disponible", 
+  "fecha_creacion": "2025-05-16"
+}
+
+### Crear un libro (inválido: autor con número, isbn con letras, estado incorrecto, categoría incorrecta, fecha inválida)
+POST http://localhost:5000/libros
+Content-Type: application/json
+Accept: application/json
+
+{
+  "titulo": "Libro Inválido",
+  "autor": "Gabriel García 123",
+  "isbn": "9780374748",
+  "categoria": "ciencia",
+  "estado": "extraviado",
+  "fecha_creacion": "16-05-2025"
+}
+
+### Actualizar un libro (válido)
+PUT http://localhost:5000/libros/buscar/2
+Content-Type: application/json
+Accept: application/json
+
+{
+  "titulo": "Cien años de soledad (Edición actualizada)",
+  "autor": "Gabriel García Márquez",
+  "isbn": "9780307474728",
+  "categoria": "novela",
+  "estado": "prestado",
+  "fecha_creacion": "2025-05-16T10:00:00Z"
+}
+
+### Eliminar un libro por id
+DELETE http://localhost:5000/libros/buscar/2
+Accept: application/json
+
+### Buscar libros por título, autor o categoría
+GET http://localhost:5000/libros/buscar?titulo=Cien&autor=Gabriel&categoria=novela
+Accept: application/json
+
+### Listar todos los libros (Primera página)
+GET http://localhost:5000/libros?limit=3&offset=0
+Accept: application/json
+
+### Listar todos los libros (Segunda página)
+GET http://localhost:5000/libros?limit=3&offset=3
+Accept: application/json
+
+### Listar todos los libros (Tercera página)
+GET http://localhost:5000/libros?limit=3&offset=6
+Accept: application/json
